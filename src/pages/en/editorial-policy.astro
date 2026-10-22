@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title="Editorial policy: sources, checks and corrections on this site" description="Where the fees, office addresses and licence exchange deadlines on this site come from, how often they are reloaded and what happens to an error you report, step by step." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial policy and corrections</h1>
+    <p>A wrong address sends someone with all their documents to the wrong branch; an outdated amount leaves them short at the counter. So this is how we work.</p>
+    <h2>Responsibility</h2><p>{AUTHOR_NAME} answers for every amount, address and deadline. Reports to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Official sources only</h2>
+    <ul>
+      <li>the <strong>road traffic fee schedule</strong> (GebOSt), annex to section 1, in its consolidated wording on gesetze-im-internet.de: fees of registration offices and of the Federal Motor Transport Authority;</li>
+      <li>the <strong>Vehicle Registration Ordinance</strong> (FZV) for plate types, reservations, short-term and export plates;</li>
+      <li>the <strong>Driving Licence Regulation</strong> (FeV), section 24a and Annex 8e, for exchange deadlines;</li>
+      <li>the <strong>Federal Motor Transport Authority’s directories</strong>: registration offices (AV1), licensing offices (AV2) and vehicle stock by registration district (FZ1);</li>
+      <li>fee figures a city publishes itself, with the page address and the date we read it.</li>
+    </ul>
+    <p>No amount comes from a guide, a forum or a registration agent. What an office does not publish, we do not estimate: the tool then says no published amount was found.</p>
+    <h2>No brokering</h2><p>We earn nothing from registration agents, plate makers, insurers or photo studios and link to none of them.</p>
+    <h2>Tests before every release</h2><p>Automated tests check every fee number against the text, recompute the amounts Berlin publishes and run every row of Annex 8e. If anything differs, nothing is published.</p>
+    <h2>Updates</h2><p>A script reloads the Federal Motor Transport Authority’s directories every month; we recheck the fee schedule whenever an amending ordinance appears. The date of the data loaded is shown on every page.</p>
+    <h2>Handling errors</h2>
+    <ol><li>Check against the official source.</li><li>Fix the parameters or code, add a test case.</li><li>New date on the pages affected.</li></ol>
+    <p>See also the <a href={route('method', lang)}>method page</a>. Version: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,413 @@
+{
+  "_lisezmoi": "Tous les montants et délais du site vivent ici, relus sur le texte officiel cité (RECETTE §4). GebOSt : Anlage zu § 1, Abschnitt 1 (KBA) et Abschnitt 2 (Länder), texte consolidé de gesetze-im-internet.de, « zuletzt geändert durch Art. 6 V v. 12.8.2026 ». Montants des villes : seulement ce que la ville publie elle-même, avec l'adresse et la date de lecture.",
+  "year": 2026,
+  "retrieved_at": "2026-10-21",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "gebost_stand": {
+    "de": "zuletzt geändert durch Art. 6 der Verordnung vom 12. August 2026",
+    "en": "last amended by Art. 6 of the Ordinance of 12 August 2026"
+  },
+  "land": {
+    "221.1": 30.0,
+    "221.1.1": 12.8,
+    "221.1.2": 45.9,
+    "221.1.3": 14.9,
+    "221.2": 27.1,
+    "221.2.1": 12.1,
+    "221.3": 31.4,
+    "221.4": 10.2,
+    "221.5": [
+      25.6,
+      205.0
+    ],
+    "221.6": 23.0,
+    "221.7": 10.6,
+    "221.8": 24.2,
+    "221.8.1": 10.4,
+    "221.9": 23.6,
+    "221.9.1": 9.9,
+    "221.10": 26.2,
+    "221.10.1": 12.4,
+    "222": 10.2,
+    "224.1": 15.9,
+    "224.2": 2.1,
+    "225": 10.2,
+    "225.1": 4.3,
+    "228": 2.6,
+    "230": 2.6,
+    "236": 8.7
+  },
+  "kba": {
+    "123.1": 4.4,
+    "124": 3.2,
+    "125": 1.2,
+    "126.1": 1.8,
+    "126.2": 1.0
+  },
+  "zuschlag": {
+    "wunsch": 10.2,
+    "reservierung": 2.6,
+    "fahrzeugbrief": 5.1,
+    "wechsel": 6.0,
+    "datenFehlen": 15.3,
+    "plakettentraeger": 0.3,
+    "zb1": 0.9,
+    "klebesiegel": 0.3,
+    "huPlakette": 0.5,
+    "stempelplakette": [
+      0.7,
+      1.2
+    ],
+    "technischeDaten": 10.2
+  },
+  "fuehrerschein": {
+    "umstellung": 25.5,
+    "zfer": 1.0,
+    "ersterteilung": 35.7,
+    "international": [
+      11.2,
+      15.3
+    ],
+    "gueltigkeit_jahre": 15,
+    "stichtag_befristung": "2013-01-19",
+    "verwarnungsgeld": 10,
+    "papier": [
+      {
+        "bis": 1952,
+        "frist": "2033-01-19"
+      },
+      {
+        "von": 1953,
+        "bis": 1958,
+        "frist": "2022-07-19"
+      },
+      {
+        "von": 1959,
+        "bis": 1964,
+        "frist": "2023-01-19"
+      },
+      {
+        "von": 1965,
+        "bis": 1970,
+        "frist": "2024-01-19"
+      },
+      {
+        "von": 1971,
+        "frist": "2025-01-19"
+      }
+    ],
+    "karte": [
+      {
+        "von": 1999,
+        "bis": 2001,
+        "frist": "2026-01-19"
+      },
+      {
+        "von": 2002,
+        "bis": 2004,
+        "frist": "2027-01-19"
+      },
+      {
+        "von": 2005,
+        "bis": 2007,
+        "frist": "2028-01-19"
+      },
+      {
+        "von": 2008,
+        "bis": 2008,
+        "frist": "2029-01-19"
+      },
+      {
+        "von": 2009,
+        "bis": 2009,
+        "frist": "2030-01-19"
+      },
+      {
+        "von": 2010,
+        "bis": 2010,
+        "frist": "2031-01-19"
+      },
+      {
+        "von": 2011,
+        "bis": 2011,
+        "frist": "2032-01-19"
+      },
+      {
+        "von": 2012,
+        "bis": 2013,
+        "frist": "2033-01-19"
+      }
+    ],
+    "geburtsjahr_vor": 1953,
+    "frist_vor_1953": "2033-01-19"
+  },
+  "fzv": {
+    "saison_min_monate": 2,
+    "saison_max_monate": 11,
+    "oldtimer_jahre": 30,
+    "reservierung_monate": 12,
+    "kurzzeit_tage": 5,
+    "ausfuhr_max_monate": 12,
+    "max_buchstaben_uz": 3
+  },
+  "kfzsteuer": {
+    "oldtimer": 191.73,
+    "oldtimer_krad": 46.02
+  },
+  "lokal": {
+    "11000": {
+      "stadt": "Berlin",
+      "abgerufen": "2026-10-21",
+      "posten": [
+        {
+          "id": "abmelden",
+          "de": "Außerbetriebsetzung vor Ort",
+          "en": "Deregistration in person",
+          "betrag": 17.1,
+          "url": "https://service.berlin.de/dienstleistung/120877/"
+        },
+        {
+          "id": "abmeldenOnline",
+          "de": "Außerbetriebsetzung online",
+          "en": "Deregistration online",
+          "betrag": 3.3,
+          "url": "https://service.berlin.de/dienstleistung/120877/"
+        },
+        {
+          "id": "neu",
+          "de": "Erstzulassung vor Ort (mindestens)",
+          "en": "First registration in person (minimum)",
+          "betrag": 30.6,
+          "url": "https://service.berlin.de/dienstleistung/120882/"
+        },
+        {
+          "id": "neuOnline",
+          "de": "Erstzulassung online",
+          "en": "First registration online",
+          "betrag": 22.22,
+          "url": "https://service.berlin.de/dienstleistung/120882/"
+        },
+        {
+          "id": "wieder",
+          "de": "Wiederzulassung ohne Halterwechsel vor Ort (mindestens)",
+          "en": "Re-registration, same keeper, in person (minimum)",
+          "betrag": 23.9,
+          "url": "https://service.berlin.de/dienstleistung/120905/"
+        },
+        {
+          "id": "wiederOnline",
+          "de": "Wiederzulassung ohne Halterwechsel online",
+          "en": "Re-registration, same keeper, online",
+          "betrag": 14.01,
+          "url": "https://service.berlin.de/dienstleistung/120905/"
+        },
+        {
+          "id": "umschreibung",
+          "de": "Umschreibung mit Berliner Kennzeichen auf neuen Halter (Grundgebühr)",
+          "en": "Transfer to a new keeper, Berlin plate kept (base fee)",
+          "betrag": 19.6,
+          "url": "https://service.berlin.de/dienstleistung/120906/"
+        },
+        {
+          "id": "auswaertig",
+          "de": "Fahrzeug mit auswärtigem Kennzeichen und Halterwechsel (Grundgebühr)",
+          "en": "Vehicle with out-of-area plate and new keeper (base fee)",
+          "betrag": 29.9,
+          "url": "https://service.berlin.de/dienstleistung/120914/"
+        },
+        {
+          "id": "adresse",
+          "de": "Adressänderung im Fahrzeugschein bei der Zulassungsbehörde",
+          "en": "Address change on the registration certificate at the registration office",
+          "betrag": 12.6,
+          "url": "https://service.berlin.de/dienstleistung/120658/"
+        },
+        {
+          "id": "historisch",
+          "de": "H-Kennzeichen (günstigster Fall)",
+          "en": "H plate (cheapest case)",
+          "betrag": 31.8,
+          "url": "https://service.berlin.de/dienstleistung/121478/"
+        },
+        {
+          "id": "umtausch",
+          "de": "Umtausch in den Kartenführerschein",
+          "en": "Exchange for a card licence",
+          "betrag": 26.5,
+          "url": "https://service.berlin.de/dienstleistung/124556/"
+        },
+        {
+          "id": "versand",
+          "de": "Direktversand des neuen Führerscheins",
+          "en": "Direct delivery of the new licence",
+          "betrag": 6.32,
+          "url": "https://service.berlin.de/dienstleistung/124556/"
+        },
+        {
+          "id": "international",
+          "de": "Internationaler Führerschein",
+          "en": "International driving permit",
+          "betrag": 15.0,
+          "url": "https://service.berlin.de/dienstleistung/121591/"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "gebost": {
+      "url": "https://www.gesetze-im-internet.de/stgebo_2011/anlage.html",
+      "label": {
+        "de": "Gebührenordnung für Maßnahmen im Straßenverkehr (GebOSt), Anlage zu § 1",
+        "en": "Road traffic fee schedule (GebOSt), annex to section 1"
+      }
+    },
+    "fzv9": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__9.html",
+      "label": {
+        "de": "§ 9 FZV: Zuteilung von Kennzeichen",
+        "en": "Section 9 FZV: allocation of number plates"
+      }
+    },
+    "fzv10": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__10.html",
+      "label": {
+        "de": "§ 10 FZV: Oldtimer-, Saison- und grüne Kennzeichen",
+        "en": "Section 10 FZV: classic, seasonal and green plates"
+      }
+    },
+    "fzv16": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__16.html",
+      "label": {
+        "de": "§ 16 FZV: Außerbetriebsetzung und Wiederzulassung",
+        "en": "Section 16 FZV: deregistration and re-registration"
+      }
+    },
+    "fzv42": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__42.html",
+      "label": {
+        "de": "§ 42 FZV: Kurzzeitkennzeichen",
+        "en": "Section 42 FZV: short-term plates"
+      }
+    },
+    "fzv45": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__45.html",
+      "label": {
+        "de": "§ 45 FZV: Ausfuhrkennzeichen",
+        "en": "Section 45 FZV: export plates"
+      }
+    },
+    "fzv2": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__2.html",
+      "label": {
+        "de": "§ 2 FZV: Begriffsbestimmungen (Oldtimer)",
+        "en": "Section 2 FZV: definitions (classic vehicle)"
+      }
+    },
+    "fzv11": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__11.html",
+      "label": {
+        "de": "§ 11 FZV: Kennzeichen für Elektrofahrzeuge",
+        "en": "Section 11 FZV: plates for electric vehicles"
+      }
+    },
+    "fev8e": {
+      "url": "https://www.gesetze-im-internet.de/fev_2010/anlage_8e.html",
+      "label": {
+        "de": "Anlage 8e FeV: Umtausch vor dem 19. Januar 2013 ausgestellter Führerscheine",
+        "en": "Annex 8e FeV: exchange of licences issued before 19 January 2013"
+      }
+    },
+    "fev24a": {
+      "url": "https://www.gesetze-im-internet.de/fev_2010/__24a.html",
+      "label": {
+        "de": "§ 24a FeV: Gültigkeit von Führerscheinen",
+        "en": "Section 24a FeV: validity of driving licences"
+      }
+    },
+    "fev25a": {
+      "url": "https://www.gesetze-im-internet.de/fev_2010/__25a.html",
+      "label": {
+        "de": "§ 25a FeV: Internationaler Führerschein",
+        "en": "Section 25a FeV: international driving permit"
+      }
+    },
+    "bkat": {
+      "url": "https://www.gesetze-im-internet.de/bkatv_2013/anlage.html",
+      "label": {
+        "de": "Bußgeldkatalog-Verordnung, Anlage (Nr. 168)",
+        "en": "Fines catalogue ordinance, annex (no. 168)"
+      }
+    },
+    "kraftstg9": {
+      "url": "https://www.gesetze-im-internet.de/kraftstg/__9.html",
+      "label": {
+        "de": "§ 9 Kraftfahrzeugsteuergesetz: Steuersätze",
+        "en": "Section 9 Motor Vehicle Tax Act: rates"
+      }
+    },
+    "kbaAv": {
+      "url": "https://www.kba.de/DE/Themen/ZentraleRegister/Anschriftenverzeichnisse/anschriftenverzeichnisse_node.html",
+      "label": {
+        "de": "Kraftfahrt-Bundesamt: Anschriftenverzeichnisse der Zulassungs- und Fahrerlaubnisbehörden",
+        "en": "Federal Motor Transport Authority (KBA): directories of registration and licensing offices"
+      }
+    },
+    "kbaFz1": {
+      "url": "https://www.kba.de/DE/Statistik/Fahrzeuge/Bestand/ZulassungsbezirkeGemeinden/zulassungsbezirke_node.html",
+      "label": {
+        "de": "Kraftfahrt-Bundesamt: Fahrzeugbestand nach Zulassungsbezirken (FZ1)",
+        "en": "KBA: vehicle stock by registration district (FZ1)"
+      }
+    },
+    "wikidata": {
+      "url": "https://www.wikidata.org/wiki/Q262166",
+      "label": {
+        "de": "Wikidata: Gemeinden in Deutschland mit Gemeindeschlüssel und Postleitzahlen (CC0)",
+        "en": "Wikidata: German municipalities with official codes and postcodes (CC0)"
+      }
+    },
+    "bmv": {
+      "url": "https://www.bmv.de/SharedDocs/DE/Artikel/StV/Strassenverkehr/faq-fuehrerschein-umtausch.html",
+      "label": {
+        "de": "Bundesministerium für Verkehr: Fragen und Antworten zum Führerscheinumtausch",
+        "en": "Federal Ministry for Transport: questions and answers on the licence exchange"
+      }
+    },
+    "berlinZul": {
+      "url": "https://service.berlin.de/dienstleistung/120882/",
+      "label": {
+        "de": "Service-Portal Berlin: Erstzulassung eines Fahrzeugs",
+        "en": "Berlin service portal: first registration of a vehicle"
+      }
+    },
+    "berlinUmtausch": {
+      "url": "https://service.berlin.de/dienstleistung/124556/",
+      "label": {
+        "de": "Service-Portal Berlin: Umtausch in einen EU-Kartenführerschein",
+        "en": "Berlin service portal: exchange for an EU card licence"
+      }
+    },
+    "berlinIntl": {
+      "url": "https://service.berlin.de/dienstleistung/121591/",
+      "label": {
+        "de": "Service-Portal Berlin: Internationalen Führerschein beantragen",
+        "en": "Berlin service portal: applying for an international driving permit"
+      }
+    },
+    "fzv15": {
+      "label": {
+        "de": "§ 15 FZV: Mitteilungspflichten bei Änderungen",
+        "en": "§ 15 FZV: duty to report changes"
+      },
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/__15.html"
+    },
+    "fzvAnl1": {
+      "url": "https://www.gesetze-im-internet.de/fzv_2023/anlage_1.html",
+      "label": {
+        "de": "Anlage 1 FZV: Buchstaben- und Zahlengruppen der Erkennungsnummer",
+        "en": "Annex 1 FZV: letter and number groups of the registration number"
+      }
+    }
+  }
+}

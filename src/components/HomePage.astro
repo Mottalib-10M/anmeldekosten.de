@@ -1,0 +1,64 @@
+---
+/**
+ * Accueil (page pilier, RECETTE §5) : la question d'abord — quelle Zulassungsstelle et combien —,
+ * donc la recherche en tête, puis le bloc citable replié, trois chiffres-clés cliquables (frais,
+ * échange du permis, Kennzeichen) et le texte. Texte dans src/content/accueil.ts.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import BehoerdenFinder from './zul/BehoerdenFinder';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import { HOME } from '../content/accueil';
+import { route, type Locale } from '../i18n/routes';
+import { helpers } from '../lib/helpers';
+import { paketVon, avStand, META } from '../lib/zul-build';
+import { P } from '../lib/engine/params';
+import { berechne, UMTAUSCH_GEBUEHR } from '../lib/engine/index';
+import type { SourceKey } from '../lib/engine/params';
+import { AUTHOR_NAME, LAST_UPDATED } from '../data/site-config';
+import { formatMoney, formatNumber, displayDate } from '../lib/format';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const x = HOME[lang];
+const H = helpers(lang);
+const path = route('home', lang);
+const parts = x.body(H).split(/<!--mini:([A-Za-z0-9_]+)-->/);
+const resume = x.resume(H);
+const faqs = x.faqs(H);
+const keys: SourceKey[] = ['gebost', 'kbaAv', 'kbaFz1', 'fev8e', 'fzv9', 'fzv16', 'wikidata', 'berlinZul'];
+const sources = keys.map((k) => ({ name: P.sources[k].label[lang], url: P.sources[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(faqs, lang)];
+const de = lang === 'de';
+const e = (n: number) => formatMoney(n, 2, lang);
+/** Prochaine échéance de l'Anlage 8e après la date des données. */
+const prochaine = P.fuehrerschein.karte.find((z) => z.frist >= LAST_UPDATED)!;
+const fd = displayDate(prochaine.frist, de ? 'de-DE' : 'en-GB');
+const ans = prochaine.von === prochaine.bis ? String(prochaine.von) : `${prochaine.von}–${prochaine.bis}`;
+const kacheln = [
+  { href: route('kosten', lang), k: de ? 'Neuwagen zulassen' : 'Register a new car', v: e(berechne({ vorgang: 'neu' }).gebuehr), s: de ? `online ${e(berechne({ vorgang: 'neu', online: true }).gebuehr)}` : `online ${e(berechne({ vorgang: 'neu', online: true }).gebuehr)}` },
+  { href: route('fuehrerschein-umtauschen', lang), k: de ? 'Führerschein umtauschen' : 'Exchange your licence', v: e(UMTAUSCH_GEBUEHR), s: de ? `Karten von ${ans}: bis ${fd}` : `Cards from ${ans}: by ${fd}` },
+  { href: route('kfz-kennzeichen', lang), k: de ? 'Kennzeichen-Kürzel' : 'Plate codes', v: formatNumber(META.kennzeichen, 0, lang), s: de ? `in ${formatNumber(META.bezirke, 0, lang)} Zulassungsbezirken` : `across ${formatNumber(META.bezirke, 0, lang)} districts` },
+];
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={faqs} sources={sources}>
+  <header class="mb-3">
+    <h1 style="hyphens: manual" class="text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
+    <p class="mt-2 text-base text-navy-700 max-sm:text-[0.95rem] sm:text-lg">{x.intro}</p>
+  </header>
+  <div data-outil><BehoerdenFinder client:load lang={lang} id="accueil" initial={paketVon('11000')} lokal={P.lokal} today={LAST_UPDATED} stand={avStand(lang)} methodHref={route('method', lang)} kostenHref={route('kosten', lang)} /></div>
+  <Clamp text={resume} lang={lang} id="clamp-home" sentences={2} class="mt-4" />
+  <p class="mt-3 text-sm text-navy-600">{de ? 'Von' : 'By'} <a href={route('about', lang)} class="underline">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline">{de ? 'Methodik und Quellen' : 'Method and sources'}</a> · <a href={route('about', lang)} class="underline">{de ? 'Über uns' : 'About'}</a></p>
+  <nav data-chrome aria-label={de ? 'Schnellwege' : 'Shortcuts'} class="not-prose mt-6 grid gap-3 sm:grid-cols-3">
+    {kacheln.map((c) => (
+      <a href={c.href} class="rounded-xl border border-navy-200 bg-white p-4 transition-colors hover:border-accent-300 hover:bg-accent-50">
+        <span class="block text-sm font-medium text-navy-600">{c.k}</span>
+        <span class="tabular-nums mt-1 block text-2xl font-bold text-navy-900">{c.v}</span>
+        <span class="mt-1 block text-sm text-navy-600">{c.s}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="prose prose-slate mt-8 max-w-none">
+    {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <div class="mini-bloc"><MiniSim client:load kind={p} lang={lang} href={route('kosten', lang)} /></div>)}
+  </div>
+</PageLayout>

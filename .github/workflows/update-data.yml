@@ -1,0 +1,32 @@
+# Monatliche Aktualisierung : Anschriftenverzeichnisse des KBA (AV 1 Zulassung, AV 2 Fahrerlaubnis,
+# monatlicher Stand), Fahrzeugbestand FZ 1 (jährlich, Stichtag 1. Januar) und Gemeinden aus Wikidata (CC0).
+# Danach Neuaufbau und Tests ; geschrieben wird nur, wenn sich Daten geändert haben.
+# Die Gebühren (GebOSt) und Fristen (FZV, FeV) stehen in src/data/params-2026.json und werden von Hand
+# gegen den Gesetzestext geprüft : eine Verordnungsänderung ist kein Fall für einen Automaten.
+name: KBA-Daten aktualisieren
+on:
+  schedule:
+    - cron: '0 6 5 * *'    # am 5. jedes Monats, 6:00 UTC
+    - cron: '0 6 20 * *'   # am 20., falls das Verzeichnis später erscheint
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install openpyxl pypdf
+      - run: python3 scripts/update-data.py
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm ci --legacy-peer-deps
+      - run: npm run build && npx vitest run
+      - name: Commit, falls sich Daten geändert haben
+        run: |
+          git config user.name 'Radif Partners'
+          git config user.email 'amradif@gmail.com'
+          git add src/data/zul public/data
+          git diff --cached --quiet || (git commit -m 'Daten: KBA-Verzeichnisse, Fahrzeugbestand und Gemeinden' && git push)

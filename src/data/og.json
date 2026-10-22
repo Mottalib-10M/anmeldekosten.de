@@ -1,0 +1,20 @@
+{
+ "accent": "#1D4ED8",
+ "symbol": "Kfz",
+ "variants": [
+  {
+   "file": "og-de.png",
+   "title": "Zulassungsstelle & Kosten 2026\nGebühr für Gebühr nachgerechnet",
+   "subtitle": "Anmelden · Ummelden · Wunschkennzeichen · Führerschein-Umtausch",
+   "badge": "GebOSt · KBA-Verzeichnis · Anlage 8e FeV",
+   "brand": "Zulassungsrechner"
+  },
+  {
+   "file": "og-en.png",
+   "title": "German car registration 2026\nevery fee itemised",
+   "subtitle": "Register · Transfer · Personalised plate · Licence exchange",
+   "badge": "Federal fee schedule · KBA directory · FeV Annex 8e",
+   "brand": "Zulassungsrechner"
+  }
+ ]
+}

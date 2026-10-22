@@ -1,0 +1,24 @@
+---
+/** Page embarquable (iframe) : l'outil de recherche sans navigation. noindex, hors sitemap (astro.config). */
+import '../../styles/global.css';
+import BehoerdenFinder from '../../components/zul/BehoerdenFinder';
+import { SITE_URL, LAST_UPDATED } from '../../data/site-config';
+import { paketVon, avStand } from '../../lib/zul-build';
+import { P } from '../../lib/engine/params';
+import { displayDate } from '../../lib/format';
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zulassungsstelle und Gebühren finden – Widget</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE_URL}/de/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+  <body class="bg-white p-2 text-navy-900">
+    <BehoerdenFinder client:load lang="de" id="embed" initial={paketVon('11000')} lokal={P.lokal} today={LAST_UPDATED} stand={avStand('de')} />
+    <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/de/`} target="_blank" rel="noopener" class="underline">Zulassungsrechner</a> · GebOSt · KBA, Behördendaten vom {displayDate(LAST_UPDATED, 'de-DE')}</p>
+  </body>
+</html>

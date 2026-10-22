@@ -1,0 +1,31 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title="Legal notice of the Zulassungsrechner: provider and host" description="Legal notice (Impressum) under Section 5 DDG and Section 18 MStV: who runs this site on German registration fees, offices and licence exchange deadlines, and who hosts it." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Legal notice</h1>
+    <p>Information under Section 5 of the German Digital Services Act (DDG) for {SITE_URL}; in German this page is called the Impressum.</p>
+    <h2>Provider</h2>
+    <LegalIdentity lang={lang} />
+    <h2>Responsible for content under Section 18(2) MStV</h2>
+    <p>{AUTHOR_NAME}, address as above, <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Hosting</h2>
+    <LegalIdentity mode="hosting" lang={lang} />
+    <h2>Not a public authority</h2>
+    <p>This website works out registration fees under the federal road traffic fee schedule (GebOSt), lists registration and licensing offices from the Federal Motor Transport Authority’s directories and calculates licence exchange deadlines under Annex 8e of the Driving Licence Regulation. It is not a registration office or licensing office, is not part of the Federal Motor Transport Authority, accepts no applications, books no appointments and sells no plates. Only your office’s fee notice and information are binding. The calculations are explained on the <a href={route('method', lang)}>method page</a>.</p>
+    <h2>Liability for content and links</h2>
+    <p>Fee rates and deadlines are tested against the wording of the regulations before each release; we cannot guarantee the absence of errors. Operators of linked sites are responsible for their content. Report errors through the <a href={route('contact', lang)}>contact page</a>.</p>
+    <h2>Embedding</h2>
+    <p>The registration office finder may be embedded free of charge by iframe, with the source link left visible: <a href={route('widget', lang)}>embed the tool</a>.</p>
+    {/* gen-legal-pages:terms */}
+    <h2>Personal data and cookies</h2>
+    {GA4_ID ? (<p>What you type in the calculators stays in your browser. The site sets Google Analytics audience measurement cookies (<code>_ga</code>, <code>_ga_{GA4_ID.replace('G-', '')}</code>, 13 months at most), with no advertising{CLARITY_ID && '; page stability is monitored with Microsoft Clarity, cookie-free'}. Details, legal basis and how to object: <a href={route('privacy', lang)}>privacy policy</a> and <a href={route('cookies', lang)}>cookies</a> page.</p>) : (<p>What you type in the calculators stays in your browser and the site sets no cookies{CLARITY_ID && '; page stability is monitored anonymously with Microsoft Clarity, cookie-free'}. See the <a href={route('privacy', lang)}>privacy policy</a> and the <a href={route('cookies', lang)}>cookies</a> page.</p>)}
+    {/* /gen-legal-pages:terms */}
+    <h2>Dispute resolution</h2>
+    <p>We do not take part in proceedings before a consumer arbitration board and are not obliged to. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

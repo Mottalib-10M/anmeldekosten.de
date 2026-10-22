@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { breadcrumbSchema } from '../../lib/seo';
+const lang = 'en';
+const code = `<iframe src="${SITE_URL}/embed/registration-office-finder/" title="German registration office and fee finder" width="100%" height="1200" style="border:0;max-width:1100px" loading="lazy"></iframe>`;
+---
+<PageLayout title="Embed the German registration office finder for free" description="Embed the finder for German registration offices, plate codes and fees by iframe at no cost: one code to copy, no sign-up, no cookies, data reloaded every month." lang={lang} noindex={true} jsonLd={[breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'Widget', path: route('widget', lang) }])]} breadcrumbs={[{ label: 'Widget' }]} showAuthor={false}>
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-navy-900 md:text-4xl">Embed the registration office finder</h1>
+    <p class="mt-3 text-lg text-navy-700">One code to copy, free. Relocation services, employers hiring from abroad and expat groups use it to show newcomers their office and the fee.</p>
+  </header>
+  <div class="prose prose-slate max-w-none">
+    <pre class="overflow-x-auto rounded-lg bg-navy-900 p-4 text-sm text-white"><code>{code}</code></pre>
+    <p>Conditions: the source link under the finder stays visible, the finder is not altered and it comes without warranty. We maintain the addresses and fees here, so your page stays current on its own. German version: <code>{`${SITE_URL}/embed/zulassungsstelle-finden/`}</code>.</p>
+    <p>Searches run in your readers’ browsers, on this site’s own files; the frame sets no cookies. Questions via the <a href={route('contact', lang)}>contact page</a>.</p>
+  </div>
+  <div class="mt-8 overflow-hidden rounded-xl border border-navy-200">
+    <iframe src="/embed/registration-office-finder/" title="German registration office and fee finder" width="100%" height="1200" style="border:0" loading="lazy"></iframe>
+  </div>
+</PageLayout>

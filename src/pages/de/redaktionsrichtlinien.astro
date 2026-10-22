@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'de';
+---
+<PageLayout title="Redaktionsrichtlinien des Zulassungsrechners: Quellen und Fehler" description="Woher Gebühren, Anschriften und Umtauschfristen auf dieser Website stammen, wann wir sie neu einlesen und was mit einem gemeldeten Fehler geschieht, Schritt für Schritt." lang={lang} noindex={true} breadcrumbs={[{ label: 'Redaktionsrichtlinien' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Redaktionsrichtlinien und Korrekturen</h1>
+    <p>Eine falsche Anschrift schickt jemanden mit allen Unterlagen zur falschen Außenstelle, ein veralteter Betrag lässt ihn am Schalter zu wenig dabeihaben. Deshalb gilt hier:</p>
+    <h2>Verantwortung</h2><p>{AUTHOR_NAME} verantwortet jeden Betrag, jede Anschrift und jede Frist. Hinweise an <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Nur amtliche Quellen</h2>
+    <ul>
+      <li><strong>Gebührenordnung für Maßnahmen im Straßenverkehr</strong> (GebOSt), Anlage zu § 1, im konsolidierten Wortlaut von gesetze-im-internet.de: Gebühren der Zulassungsbehörden und des Kraftfahrt-Bundesamts;</li>
+      <li><strong>Fahrzeug-Zulassungsverordnung</strong> (FZV) für Kennzeichenarten, Reservierung, Kurzzeit- und Ausfuhrkennzeichen;</li>
+      <li><strong>Fahrerlaubnis-Verordnung</strong> (FeV), § 24a und Anlage 8e, für die Umtauschfristen;</li>
+      <li><strong>Verzeichnisse des Kraftfahrt-Bundesamts</strong>: Anschriften der Zulassungsbehörden (AV1) und Fahrerlaubnisbehörden (AV2), Fahrzeugbestand nach Zulassungsbezirken (FZ1);</li>
+      <li>Gebührenangaben, die eine Stadt selbst veröffentlicht, mit Adresse der Seite und Datum des Abrufs.</li>
+    </ul>
+    <p>Kein Betrag stammt aus einem Ratgeber, einem Forum oder von einem Zulassungsdienst. Was eine Behörde nicht veröffentlicht, schätzen wir nicht: Dann steht da, dass kein veröffentlichter Betrag gefunden wurde.</p>
+    <h2>Keine Vermittlung</h2><p>Wir verdienen nicht an Zulassungsdiensten, Schilderprägern, Versicherern oder Fotostudios und verlinken keinen von ihnen.</p>
+    <h2>Tests vor jeder Veröffentlichung</h2><p>Automatische Tests prüfen jede Gebührennummer gegen den Text, rechnen die von Berlin veröffentlichten Beträge nach und spielen jede Zeile der Anlage 8e durch. Weicht etwas ab, wird nicht veröffentlicht.</p>
+    <h2>Aktualisierung</h2><p>Die Verzeichnisse des Kraftfahrt-Bundesamts liest ein Skript jeden Monat neu ein; die Gebührenordnung prüfen wir bei jeder Änderungsverordnung. Das Datum der eingelesenen Daten steht auf jeder Seite.</p>
+    <h2>Umgang mit Fehlern</h2>
+    <ol><li>Abgleich mit der amtlichen Quelle.</li><li>Korrektur der Parameter oder des Codes, neuer Testfall.</li><li>Neues Datum auf den betroffenen Seiten.</li></ol>
+    <p>Siehe auch die <a href={route('method', lang)}>Methodik</a>. Fassung: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

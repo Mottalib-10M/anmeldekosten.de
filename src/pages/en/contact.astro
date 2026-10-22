@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title="Contact: a wrong fee or office address in the calculator" description="Write to us if a fee does not match your fee notice, a registration office has moved or an exchange deadline looks wrong. We book no appointments and take no applications." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>One address for everything: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no phone line and no call-back, because we sell nothing.</p>
+    <h2>A fee does not match your notice</h2>
+    <p>Send us the lines of the fee notice (Gebührenbescheid) with their numbers, such as 221.1, 228.2 or 125, and the district, without your name or vehicle identification number. We compare each line with the fee schedule. If a difference is confirmed, we change the calculator and add the case to the tests, as our <a href={route('editorial', lang)}>editorial policy</a> describes.</p>
+    <h2>An address is wrong</h2>
+    <p>Addresses and phone numbers come from the Federal Motor Transport Authority’s directory, which the offices report themselves. If a branch has moved, we check the district’s own website and note the change until the next edition of the directory.</p>
+    <h2>What we cannot do</h2>
+    <p>We book no appointments, reserve no personalised numbers, take no applications and see no data from the vehicle register. Your registration office does all that; the <a href={route('home', lang)}>finder</a> shows its address.</p>
+    <h2>Provider</h2>
+    <LegalIdentity lang={lang} />
+    <p>Responsible: {AUTHOR_NAME}. See the <a href={route('terms', lang)}>legal notice</a>. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

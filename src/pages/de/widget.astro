@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { breadcrumbSchema } from '../../lib/seo';
+const lang = 'de';
+const code = `<iframe src="${SITE_URL}/embed/zulassungsstelle-finden/" title="Zulassungsstelle und Gebühren finden" width="100%" height="1200" style="border:0;max-width:1100px" loading="lazy"></iframe>`;
+---
+<PageLayout title="Zulassungsstellen-Suche einbinden: kostenloser iframe-Code" description="Die Suche nach Zulassungsstelle, Kennzeichen und Gebühr kostenlos per iframe einbinden: ein Code zum Kopieren, ohne Anmeldung, ohne Cookies, Daten monatlich neu." lang={lang} noindex={true} jsonLd={[breadcrumbSchema([{ name: 'Start', path: route('home', lang) }, { name: 'Widget', path: route('widget', lang) }])]} breadcrumbs={[{ label: 'Widget' }]} showAuthor={false}>
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-navy-900 md:text-4xl">Die Zulassungsstellen-Suche einbinden</h1>
+    <p class="mt-3 text-lg text-navy-700">Ein Code zum Kopieren, kostenlos. Autohäuser, Gemeinden, Vereine und Redaktionen zeigen damit ihren Lesern die zuständige Stelle und die Gebühr.</p>
+  </header>
+  <div class="prose prose-slate max-w-none">
+    <pre class="overflow-x-auto rounded-lg bg-navy-900 p-4 text-sm text-white"><code>{code}</code></pre>
+    <p>Bedingungen: Der Quellenlink unter der Suche bleibt sichtbar, die Suche wird nicht verändert, sie wird ohne Gewähr bereitgestellt. Anschriften und Gebühren pflegen wir hier, Ihre Einbindung bleibt so von selbst aktuell. Englische Fassung: <code>{`${SITE_URL}/embed/registration-office-finder/`}</code>.</p>
+    <p>Gesucht wird im Browser Ihrer Leser, in Dateien dieser Website; der Rahmen setzt keine Cookies. Fragen über die <a href={route('contact', lang)}>Kontaktseite</a>.</p>
+  </div>
+  <div class="mt-8 overflow-hidden rounded-xl border border-navy-200">
+    <iframe src="/embed/zulassungsstelle-finden/" title="Zulassungsstelle und Gebühren finden" width="100%" height="1200" style="border:0" loading="lazy"></iframe>
+  </div>
+</PageLayout>

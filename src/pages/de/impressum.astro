@@ -1,0 +1,31 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'de';
+---
+<PageLayout title="Impressum des Zulassungsrechners: Anbieter und Hoster" description="Impressum nach § 5 DDG und § 18 MStV: wer den Zulassungsrechner mit Gebühren, Zulassungsstellen und Umtauschfristen betreibt, wer verantwortlich ist, wer hostet." lang={lang} noindex={true} breadcrumbs={[{ label: 'Impressum' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Impressum</h1>
+    <p>Angaben nach § 5 Digitale-Dienste-Gesetz (DDG) für {SITE_URL}.</p>
+    <h2>Anbieter</h2>
+    <LegalIdentity lang={lang} />
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>{AUTHOR_NAME}, Anschrift wie oben, <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Hosting</h2>
+    <LegalIdentity mode="hosting" lang={lang} />
+    <h2>Kein Behördenangebot</h2>
+    <p>Diese Website rechnet Zulassungsgebühren nach der Gebührenordnung für Maßnahmen im Straßenverkehr, nennt die Zulassungs- und Fahrerlaubnisbehörden aus den Verzeichnissen des Kraftfahrt-Bundesamts und berechnet Umtauschfristen nach Anlage 8e der Fahrerlaubnis-Verordnung. Sie ist weder eine Zulassungsstelle noch eine Führerscheinstelle, gehört nicht zum Kraftfahrt-Bundesamt, nimmt keine Anträge an, vergibt keine Termine und verkauft keine Kennzeichen. Verbindlich sind allein der Gebührenbescheid und die Auskunft Ihrer Behörde. Die Rechenwege stehen in der <a href={route('method', lang)}>Methodik</a>.</p>
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>Gebührensätze und Fristen werden vor jeder Veröffentlichung gegen den Wortlaut der Verordnungen getestet; eine Gewähr für Fehlerfreiheit übernehmen wir nicht. Für verlinkte Seiten sind deren Betreiber verantwortlich. Fehler melden Sie über die <a href={route('contact', lang)}>Kontaktseite</a>.</p>
+    <h2>Einbindung</h2>
+    <p>Die Suche nach der Zulassungsstelle darf kostenlos per iframe eingebunden werden, der Quellenlink bleibt sichtbar: <a href={route('widget', lang)}>Rechner einbinden</a>.</p>
+    {/* gen-legal-pages:terms */}
+    <h2>Datenschutz und Cookies</h2>
+    {GA4_ID ? (<p>Ihre Eingaben in den Rechnern verlassen Ihren Browser nicht. Die Seite setzt Cookies der Reichweitenmessung von Google Analytics (<code>_ga</code>, <code>_ga_{GA4_ID.replace('G-', '')}</code>, höchstens 13 Monate), ohne Werbung{CLARITY_ID && '; die Stabilität der Seiten wird mit Microsoft Clarity ohne Cookies gemessen'}. Einzelheiten, Rechtsgrundlage und Widerspruch: <a href={route('privacy', lang)}>Datenschutzerklärung</a> und Seite <a href={route('cookies', lang)}>Cookies</a>.</p>) : (<p>Ihre Eingaben in den Rechnern verlassen Ihren Browser nicht, und die Seite setzt keine Cookies{CLARITY_ID && '; die Stabilität der Seiten wird anonym mit Microsoft Clarity ohne Cookies gemessen'}. Siehe <a href={route('privacy', lang)}>Datenschutzerklärung</a> und Seite <a href={route('cookies', lang)}>Cookies</a>.</p>)}
+    {/* /gen-legal-pages:terms */}
+    <h2>Streitbeilegung</h2>
+    <p>Wir nehmen nicht an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil und sind dazu nicht verpflichtet. Stand: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

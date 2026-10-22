@@ -1,0 +1,83 @@
+---
+/** Methodik (page de confiance, RECETTE §8.2) : données, calculs, règles de date, tests, limites, mises à jour. */
+import PageLayout from '../layouts/PageLayout.astro';
+import { route, type Locale } from '../i18n/routes';
+import { P } from '../lib/engine/params';
+import { berechne, umtauschFrist } from '../lib/engine/index';
+import { formatMoney, formatNumber, displayDate } from '../lib/format';
+import { breadcrumbSchema, webPageSchema } from '../lib/seo';
+import { LAST_UPDATED, CONTACT_EMAIL } from '../data/site-config';
+import { META, avStand, fz1Stand } from '../lib/zul-build';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const de = lang === 'de';
+const tag = de ? 'de-DE' : 'en-GB';
+const e = (n: number) => formatMoney(n, 2, lang);
+const n0 = (x: number) => formatNumber(x, 0, lang);
+const d = (iso: string) => displayDate(iso, tag);
+const title = de ? 'Zulassungsgebühren berechnen: Methodik, Quellen und Fristen' : 'Registration fee method: sources, GebOSt lines and deadlines';
+const description = de ? 'Woher Anschriften, Kennzeichen und Bestandszahlen kommen, wie jede Gebühr aus der GebOSt entsteht, welche Posten Spannen sind, wie die Umtauschfrist rechnet.' : 'Where addresses, plate codes and vehicle counts come from, how each fee is built from the GebOSt, which items are ranges and how the exchange deadline is set.';
+const h1 = de ? 'Methodik und Quellen' : 'Method and sources';
+const path = route('method', lang);
+const sources = Object.values(P.sources);
+const abm = berechne({ vorgang: 'abmelden' }), abmO = berechne({ vorgang: 'abmelden', online: true }), adr = berechne({ vorgang: 'adresse' }), neu = berechne({ vorgang: 'neu' });
+const ex = umtauschFrist({ art: 'karte', geburtsjahr: 1975, ausstellungsjahr: 2003 }, LAST_UPDATED);
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: de ? 'Start' : 'Home', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
+  {de ? (
+  <div class="prose prose-slate max-w-none">
+    <p>Der Zulassungsrechner beruht auf drei amtlichen Grundlagen: der Gebührenordnung für Maßnahmen im Straßenverkehr (GebOSt) für die Beträge, den Verzeichnissen des Kraftfahrt-Bundesamts (KBA) für Behörden und Kennzeichen, und der Fahrerlaubnis-Verordnung für die Umtauschfristen. Kein Betrag und keine Anschrift ist von Hand in eine Seite getippt: Die Texte zitieren, was das Aktualisierungsskript und die Parameterdatei liefern.</p>
+    <h2>Behörden, Kennzeichen, Gemeinden</h2>
+    <p>Das Skript <code>scripts/update-data.py</code> lädt jeden Monat das Anschriftenverzeichnis der Zulassungsbehörden (AV1, Stand {META.av1Stand}) und das der Fahrerlaubnisbehörden (AV2) von der Website des KBA. Daraus entstehen {n0(META.bezirke)} Zulassungsbezirke mit {n0(META.stellen)} Haupt- und Außenstellen und {n0(META.kennzeichen)} Unterscheidungszeichen. Kennzeichen, die das Verzeichnis mit „A:“ als auslaufend markiert, zeigen wir getrennt: Sie fahren noch, werden aber nicht mehr ausgegeben. Kennzeichen von Bundes- und Landesbehörden (Bundeswehr, Landesregierungen) gehören zu keinem Kreis und werden nicht angezeigt.</p>
+    <p>Welche Behörde für einen Ort zuständig ist, ergibt sich aus dem amtlichen Gemeindeschlüssel: Seine ersten fünf Stellen sind der Kreis. Die {n0(META.gemeinden)} Gemeinden mit Schlüssel und Postleitzahlen kommen aus Wikidata (gemeinfrei, CC0). Hat ein Kreis mehrere Zulassungsbehörden, etwa Stadt und Region Hannover, wählt die Suche die, deren Sitz so heißt wie der Ort; sonst die des Kreises. Die Zahl der zugelassenen Fahrzeuge stammt aus der KBA-Statistik FZ1 zum {META.fz1Stand}.</p>
+    <h2>Die Gebühr, Zeile für Zeile</h2>
+    <p>Jeder Vorgang ist einer Gebührennummer zugeordnet: Zulassung Nr. 221.1, Umschreibung Nr. 221.8, Ummeldung mit Kennzeichen Nr. 221.9, Außerbetriebsetzung Nr. 224.1 und so weiter, jeweils mit der internetbasierten Nummer. Dazu kommen die Zuschläge, die der Text an bestimmte Nummern knüpft: {e(P.zuschlag.wunsch)} für ein Wunschkennzeichen, {e(P.land['230'])} für die Reservierung, {e(P.zuschlag.fahrzeugbrief)} für den Umtausch eines alten Fahrzeugbriefs, {e(P.zuschlag.wechsel)} für ein Wechselkennzeichen, {e(P.zuschlag.plakettentraeger)} für den Plakettenträger beim Online-Antrag. Diese Summe ist genau und bundesweit gleich: Die Gebührenordnung ist eine Bundesverordnung, erlassen auf Grund von § 6a StVG, und gilt in allen Ländern.</p>
+    <p>Als Spanne zeigen wir, was vom Einzelfall abhängt: zwei Stempelplaketten zu {e(P.zuschlag.stempelplakette[0])} oder, mit farbigem Landeswappen, {e(P.zuschlag.stempelplakette[1])}, die HU-Plakette zu {e(P.zuschlag.huPlakette)}, und den Anteil des KBA für den Registereintrag ({e(P.kba['125'])} nach Nr. 125, {e(P.kba['124'])} bei einem Halterwechsel nach Nr. 124, bis {e(P.kba['123.1'])} nach Nr. 123.1, wenn die Behörde einen neuen Fahrzeugbrief zuteilt). Welche dieser Nummern ein Amt bei welchem Vorgang erhebt, steht nicht in jedem Fall wörtlich in der Verordnung; die Zuordnung ist unsere Lesart.</p>
+    <p>Gegenprobe: Berlin veröffentlicht für die Außerbetriebsetzung {e(P.lokal['11000'].posten[0].betrag)} vor Ort und {e(P.lokal['11000'].posten[1].betrag)} online; der Rechner kommt auf {e(abm.max)} und {e(abmO.max)}. Für die Adressänderung im Fahrzeugschein nennt Berlin {e(P.lokal['11000'].posten[8].betrag)}, der Rechner {e(adr.max)}. Andere Berliner Angaben weichen von der aktuellen Gebührenordnung ab, etwa die Grundgebühr der Umschreibung; wir zeigen sie auf der Berlin-Seite mit Quelle, rechnen aber nach der Verordnung. Für eine Neuzulassung vor Ort ergibt sich {e(neu.gebuehr)} Gebühr und {e(neu.min)} bis {e(neu.max)} mit allen Nebenposten.</p>
+    <p>Nicht eingerechnet: die Kennzeichenschilder (ein privater Schilderpräger setzt den Preis; der Nutzer kann ihn eintragen), die Versicherung, die Kfz-Steuer und Gebühren, die ein Land für Sonderfälle erhebt. Einen Gesamtbetrag einer Behörde zeigen wir nur, wenn sie ihn selbst veröffentlicht, mit Adresse und Datum; sonst steht dort, dass keiner gefunden wurde.</p>
+    <h2>Die Umtauschfrist</h2>
+    <p>Für Papierführerscheine (bis 1998) zählt das Geburtsjahr, für Kartenführerscheine von 1999 bis zum 18. Januar 2013 das Ausstellungsjahr, für alle vor 1953 Geborenen der 19. Januar 2033 (Anlage 8e FeV). Beispiel: Karte von 2003, Frist {d(ex.frist!)}. Die Gebühr ist {e(P.fuehrerschein.umstellung)} nach Nr. 202.5 plus {e(P.fuehrerschein.zfer)} für das Zentrale Fahrerlaubnisregister nach Nr. 126.2; Berlin veröffentlicht dieselben {e(P.fuehrerschein.umstellung + P.fuehrerschein.zfer)}. Wer zu spät kommt, riskiert bei einer Kontrolle ein Verwarnungsgeld von {formatMoney(P.fuehrerschein.verwarnungsgeld, 0, lang)} (Nr. 168 BKat); die Fahrerlaubnis selbst bleibt bestehen.</p>
+    <h2>Tests</h2>
+    <p>Vor jeder Veröffentlichung prüfen automatische Tests jede Gebührennummer gegen die Parameterdatei, rechnen die Berliner Beträge nach, spielen jede Zeile der Anlage 8e durch und kontrollieren, dass das KBA-Verzeichnis vollständig eingelesen wurde (über 390 Bezirke, über 700 Kennzeichen). Ein fehlgeschlagener Test verhindert die Veröffentlichung.</p>
+    <h2>Grenzen</h2>
+    <ul>
+      <li>Die Zuständigkeit innerhalb eines Kreises mit mehreren Behörden kann von unserer Zuordnung abweichen, etwa bei großen kreisangehörigen Städten.</li>
+      <li>Öffnungszeiten, Terminvergabe und Wartezeiten kennt der Rechner nicht.</li>
+      <li>Gebühren für Sonderfälle (rote Kennzeichen, Einzelgenehmigung, Zeitaufwand) zeigen wir als Spanne der Verordnung oder gar nicht.</li>
+    </ul>
+    <h2>Aktualisierung</h2>
+    <p>Verzeichnisse und Statistik: monatlich, durch eine geplante Aufgabe, die das Skript ausführt, die Tests laufen lässt und die Seiten neu baut. Gebührenordnung und Fahrerlaubnis-Verordnung: bei jeder Änderungsverordnung, zuletzt geprüft am {d(P.retrieved_at)}. Fehler an <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; siehe <a href={route('editorial', lang)}>Redaktionsrichtlinien</a>.</p>
+    <h2>Alle Quellen</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.de}</a></li>)}</ul>
+    <p class="text-sm text-navy-600">Behördendaten vom <time datetime={LAST_UPDATED}>{d(LAST_UPDATED)}</time> · Gebührenordnung gelesen am <time datetime={P.retrieved_at}>{d(P.retrieved_at)}</time>.</p>
+  </div>
+  ) : (
+  <div class="prose prose-slate max-w-none">
+    <p>The calculator rests on three official foundations: the road traffic fee schedule (GebOSt) for the amounts, the Federal Motor Transport Authority’s (KBA) directories for offices and plate codes, and the Driving Licence Regulation for exchange deadlines. No amount or address is typed into a page by hand: the texts quote what the update script and the parameter file supply.</p>
+    <h2>Offices, plate codes, municipalities</h2>
+    <p>The script <code>scripts/update-data.py</code> downloads, every month, the KBA’s directory of registration offices (AV1, as of {avStand(lang)}) and of licensing offices (AV2). They yield {n0(META.bezirke)} registration districts with {n0(META.stellen)} main offices and branches, and {n0(META.kennzeichen)} district codes. Codes the directory marks “A:” as being phased out are shown separately: they are still on cars but no longer issued. Codes of federal and state bodies (armed forces, state governments) belong to no district and are left out.</p>
+    <p>Which office covers a place follows from the official municipality key: its first five digits are the district. The {n0(META.gemeinden)} municipalities with keys and postcodes come from Wikidata (public domain, CC0). Where a district has several registration offices, such as the city and region of Hannover, the search picks the one whose seat bears the place’s name, otherwise the district’s. Vehicle counts come from the KBA’s FZ1 statistics at {fz1Stand(lang)}.</p>
+    <h2>The fee, line by line</h2>
+    <p>Each procedure is tied to a fee number: registration no. 221.1, transfer of keeper no. 221.8, re-registration after a move keeping the plate no. 221.9, deregistration no. 224.1 and so on, each with its online counterpart. On top come the surcharges the text attaches to particular numbers: {e(P.zuschlag.wunsch)} for a personalised number, {e(P.land['230'])} for a reservation, {e(P.zuschlag.fahrzeugbrief)} for replacing an old-style logbook, {e(P.zuschlag.wechsel)} for an interchangeable plate and {e(P.zuschlag.plakettentraeger)} for the seal carrier on online applications. That total is exact and identical across Germany: the schedule is a federal ordinance, made under section 6a of the Road Traffic Act, and applies in every state.</p>
+    <p>Shown as a range is whatever depends on the case: two registration seals at {e(P.zuschlag.stempelplakette[0])} or, with the state’s coloured coat of arms, {e(P.zuschlag.stempelplakette[1])}; the roadworthiness sticker at {e(P.zuschlag.huPlakette)}; and the KBA’s share for the register entry ({e(P.kba['125'])} under no. 125, {e(P.kba['124'])} for a change of keeper under no. 124, up to {e(P.kba['123.1'])} under no. 123.1 when the office issues a new logbook). Which of these an office charges for which procedure is not always spelled out in the ordinance; the allocation is our reading.</p>
+    <p>Cross-check: Berlin publishes {e(P.lokal['11000'].posten[0].betrag)} in person and {e(P.lokal['11000'].posten[1].betrag)} online for deregistration; the calculator arrives at {e(abm.max)} and {e(abmO.max)}. For an address change on the registration certificate Berlin states {e(P.lokal['11000'].posten[8].betrag)}, the calculator {e(adr.max)}. Some other Berlin figures differ from the current schedule, such as the base fee for a transfer of keeper; we show them on the Berlin page with their source but calculate under the ordinance. A new car registered in person comes to {e(neu.gebuehr)} in fees and {e(neu.min)} to {e(neu.max)} with all small items.</p>
+    <p>Not included: the number plates themselves (a private plate maker sets the price; you can enter it), insurance, vehicle tax and fees a state charges for special cases. An office’s overall total is shown only when the office publishes it, with address and date; otherwise the tool says none was found.</p>
+    <h2>The exchange deadline</h2>
+    <p>For paper licences (up to 1998) the year of birth counts; for card licences issued from 1999 to 18 January 2013 the year of issue; for anyone born before 1953, 19 January 2033 (Annex 8e FeV). Example: a card from 2003 must be exchanged by {d(ex.frist!)}. The fee is {e(P.fuehrerschein.umstellung)} under no. 202.5 plus {e(P.fuehrerschein.zfer)} for the central licence register under no. 126.2; Berlin publishes the same {e(P.fuehrerschein.umstellung + P.fuehrerschein.zfer)}. Drivers caught after the deadline risk an on-the-spot fine of {formatMoney(P.fuehrerschein.verwarnungsgeld, 0, lang)} (no. 168 of the fines catalogue); the driving entitlement itself remains.</p>
+    <h2>Tests</h2>
+    <p>Before every release automated tests check each fee number against the parameter file, recompute the Berlin amounts, run every row of Annex 8e and confirm that the KBA directory loaded in full (over 390 districts, over 700 codes). A failing test blocks publication.</p>
+    <h2>Limits</h2>
+    <ul>
+      <li>Responsibility within a district that has several offices may differ from our allocation, for example in large towns that run their own office.</li>
+      <li>The calculator does not know opening hours, appointment systems or waiting times.</li>
+      <li>Fees for special cases (red trade plates, individual approval, time charged) are shown as the ordinance’s range or not at all.</li>
+    </ul>
+    <h2>Updates</h2>
+    <p>Directories and statistics: monthly, by a scheduled job that runs the script, the tests and a rebuild. Fee schedule and Driving Licence Regulation: on every amending ordinance, last checked on {d(P.retrieved_at)}. Errors to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; see the <a href={route('editorial', lang)}>editorial policy</a>.</p>
+    <h2>All sources</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.en}</a></li>)}</ul>
+    <p class="text-sm text-navy-600">Office data of <time datetime={LAST_UPDATED}>{d(LAST_UPDATED)}</time> · fee schedule read on <time datetime={P.retrieved_at}>{d(P.retrieved_at)}</time>.</p>
+  </div>
+  )}
+</PageLayout>

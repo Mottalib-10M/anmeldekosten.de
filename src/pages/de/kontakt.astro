@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'de';
+---
+<PageLayout title="Kontakt: falsche Gebühr oder Anschrift im Zulassungsrechner" description="Schreiben Sie uns, wenn eine Gebühr nicht zum Bescheid passt, eine Zulassungsstelle umgezogen ist oder eine Umtauschfrist falsch scheint. Keine Termine, keine Anträge." lang={lang} noindex={true} breadcrumbs={[{ label: 'Kontakt' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Kontakt</h1>
+    <p>Eine Adresse für alles: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Es gibt kein Telefon und keinen Rückruf, denn wir verkaufen nichts.</p>
+    <h2>Eine Gebühr passt nicht zu Ihrem Bescheid</h2>
+    <p>Schicken Sie uns die Positionen des Gebührenbescheids mit ihren Nummern (zum Beispiel 221.1, 228.2, 125) und den Kreis, ohne Namen und ohne Fahrgestellnummer. Wir vergleichen jede Zeile mit der Gebührenordnung. Bestätigt sich eine Abweichung, ändern wir den Rechner und nehmen den Fall in die Tests auf, wie es die <a href={route('editorial', lang)}>Redaktionsrichtlinien</a> beschreiben.</p>
+    <h2>Eine Anschrift stimmt nicht</h2>
+    <p>Anschriften und Telefonnummern stammen aus dem Verzeichnis des Kraftfahrt-Bundesamts, das die Behörden selbst melden. Ist eine Außenstelle umgezogen, prüfen wir die Angabe auf der Website des Kreises und vermerken sie bis zur nächsten Ausgabe des Verzeichnisses.</p>
+    <h2>Was wir nicht können</h2>
+    <p>Wir vergeben keine Termine, reservieren keine Wunschkennzeichen, nehmen keine Anträge an und sehen keine Daten aus dem Fahrzeugregister. Dafür ist Ihre Zulassungsbehörde zuständig, deren Anschrift die <a href={route('home', lang)}>Suche</a> zeigt.</p>
+    <h2>Anbieter</h2>
+    <LegalIdentity lang={lang} />
+    <p>Verantwortlich: {AUTHOR_NAME}. Siehe <a href={route('terms', lang)}>Impressum</a>. Stand: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

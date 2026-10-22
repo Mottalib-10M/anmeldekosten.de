@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { personSchema, organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate, formatNumber } from '../../lib/format';
+import { META } from '../../lib/zul-build';
+import { P } from '../../lib/engine/params';
+const lang = 'de';
+const n = (x: number) => formatNumber(x, 0, lang);
+---
+<PageLayout title="Über den Zulassungsrechner: wer rechnet hier und warum" description="Wer den Zulassungsrechner herausgibt, warum er jede Gebühr nach der Gebührenordnung zerlegt, woher Anschriften und Fristen stammen und was er nie tut." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Start', path: route('home', lang) }, { name: 'Über uns', path: route('about', lang) }])]} breadcrumbs={[{ label: 'Über uns' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">Über den Zulassungsrechner</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>Radif Partners gibt unabhängige Rechner zu Verwaltungs- und Geldfragen heraus. Dieser beantwortet drei Fragen, die sich jeder stellt, der in Deutschland ein Auto kauft, umzieht oder einen alten Führerschein in der Schublade hat: Welche Zulassungsstelle ist für mich zuständig, was kostet mein Vorgang genau, und bis wann muss der Führerschein getauscht sein?</p>
+    <h2>Warum noch eine Seite dazu</h2>
+    <p>Wer im Oktober 2026 nach den Kosten einer Anmeldung suchte, fand oben Ratgeber, die für eine Neuzulassung einen Betrag nannten, der in der geltenden Gebührenordnung nicht vorkommt, die eine Spanne „je nach Stadt“ angaben, obwohl die Gebühren bundesweit in einer einzigen Verordnung stehen, und die keine Rechnung erlaubten. Die Seiten der Städte selbst sind genau, aber jede beschreibt nur ihren eigenen Schalter.</p>
+    <p>Diese Seite berechnet jede Zulassungsgebühr Zeile für Zeile aus der geltenden Gebührenordnung, mit Nummer, Online-Abschlag und Wunschkennzeichen, und für jeden der {n(META.bezirke)} Zulassungsbezirke die amtliche Anschrift, die Kennzeichen und die Führerscheinstelle aus den Verzeichnissen des Kraftfahrt-Bundesamts zeigt, ohne Termin, Konto oder Vermittler.</p>
+    <h2>Woher die Angaben kommen</h2>
+    <p>Gebühren: Gebührenordnung für Maßnahmen im Straßenverkehr, {P.gebost_stand.de}. Anschriften: Verzeichnis der Zulassungsbehörden, Stand {META.av1Stand}, mit {n(META.stellen)} Haupt- und Außenstellen, und Verzeichnis der Fahrerlaubnisbehörden. Fahrzeugbestand: Statistik FZ1 zum {META.fz1Stand}. Fristen: Anlage 8e der Fahrerlaubnis-Verordnung. Die Rechenwege stehen in der <a href={route('method', lang)}>Methodik</a>.</p>
+    <h2>Was wir nicht sind</h2>
+    <p>Wir sind keine Zulassungsstelle, keine Führerscheinstelle und kein Zulassungsdienst. Wir nehmen keine Anträge an, reservieren keine Kennzeichen, verkaufen keine Schilder und vergeben keine Termine. Verbindlich ist der Gebührenbescheid Ihrer Behörde.</p>
+    <h2>Finanzierung</h2><p>Die Rechner sind kostenlos. Sollte je Werbung erscheinen, dann nie über einem Rechner und nie als Empfehlung; was Sie eintippen, bleibt auf Ihrem Gerät.</p>
+    <h2>Englische Fassung</h2><p>Jede Seite gibt es auf Englisch, für Zugezogene, die ihr erstes Auto anmelden oder ihren ausländischen Führerschein umschreiben lassen und die Begriffe der Behörden verstehen wollen.</p>
+    <h2>Fehler melden</h2><p>Stimmt ein Betrag nicht mit Ihrem Bescheid überein oder ist eine Stelle umgezogen? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Siehe auch die <a href={route('editorial', lang)}>Redaktionsrichtlinien</a> und das <a href={route('terms', lang)}>Impressum</a>.</p>
+    <p class="text-sm text-navy-600">Behördendaten vom <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'de-DE')}</time>.</p>
+  </div>
+</PageLayout>
