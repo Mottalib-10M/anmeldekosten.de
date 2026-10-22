@@ -16,7 +16,7 @@ export default defineGuide({
     slug: 'zulassungsstelle-hannover',
     nav: 'Hannover',
     card: 'Stadt am Schützenplatz, Region an der Hildesheimer Straße, beide H.',
-    title: 'Zulassungsstelle Hannover: Stadt oder Region, Anschriften',
+    title: 'Zulassungsstelle Hannover: Stadt, Region und Kennzeichen H',
     description: 'Zulassungsstelle Hannover: Landeshauptstadt am Schützenplatz oder Region an der Hildesheimer Straße, wer zuständig ist, Kürzel H und die Gebühren 2026.',
     h1: 'Zulassungsstelle Hannover: Landeshauptstadt oder Region?',
     intro: 'In Hannover gibt es zwei Zulassungsbehörden für dasselbe Kürzel H: die der Landeshauptstadt und die der Region. Das ist bundesweit eine Besonderheit.',

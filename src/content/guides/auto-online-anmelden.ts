@@ -30,7 +30,7 @@ export default defineGuide({
     card: 'i-Kfz: was man braucht, was es kostet, wo es hakt, und die Ersparnis je Vorgang.',
     title: 'Auto online anmelden 2026: i-Kfz, Kosten und Voraussetzungen',
     description: 'Auto online anmelden mit i-Kfz: Gebühr je Vorgang gegenüber dem Schalter, Ausweis mit Online-Funktion, Sicherheitscodes, Ablauf, typische Fehler und Fristen.',
-    h1: 'Auto online anmelden: i-Kfz Schritt für Schritt',
+    h1: 'Auto online anmelden: wie es geht und was Sie brauchen',
     intro: 'Ohne Termin und ohne Wartemarke: Mit der internetbasierten Zulassung erledigen Sie die meisten Vorgänge am Rechner und zahlen dafür weniger. Was Sie dafür brauchen und wo es scheitert.',
     resume: (h) => `Die internetbasierte Fahrzeugzulassung, kurz i-Kfz, erlaubt es, ein Auto ohne Besuch bei der Zulassungsstelle anzumelden, umzumelden oder abzumelden. Die Gebührenordnung für Maßnahmen im Straßenverkehr, ${h.P.gebost_stand.de}, sieht dafür eigene, niedrigere Nummern vor: Ein Neuwagen kostet online nach Nummer 221.1.1 ${h.eur(no(h).gebuehr)} statt ${h.eur(n(h).gebuehr)} am Schalter, eine Abmeldung nach Nummer 224.2 ${h.eur(h.P.land['224.2'])} statt ${h.eur(h.P.land['224.1'])}. Voraussetzung ist ein Personalausweis, eine eID-Karte oder ein elektronischer Aufenthaltstitel mit freigeschalteter Online-Funktion und bekannter PIN, dazu ein Kartenleser oder ein Smartphone mit NFC. Die Zulassungsbescheinigungen müssen einen verdeckten Sicherheitscode tragen, der freigerubbelt wird. Für die Anmeldung kommen die eVB-Nummer der Versicherung und ein SEPA-Mandat für die Kfz-Steuer dazu. Die Plaketten schickt die Behörde per Post; bis sie da sind, gilt der elektronische Bescheid.`,
     faqs: (h) => [

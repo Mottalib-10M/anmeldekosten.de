@@ -32,14 +32,14 @@ export default defineGuide({
   mini: 'international',
   miniHref: 'fuehrerschein-umtausch-frist',
   related: ['fuehrerschein-umtausch-frist', 'fuehrerschein-umtauschen', 'strassenverkehrsamt', 'zulassungsstelle-termin'],
-  sources: ['fev25a', 'gebost', 'fev8e', 'berlinIntl'],
+  sources: ['fev25a', 'fev25b', 'gebost', 'fev8e', 'berlinIntl'],
   de: {
     slug: 'internationaler-fuehrerschein',
     nav: 'Internationaler Führerschein',
     card: 'Wer ihn bekommt, was er kostet, welche Unterlagen, welches Muster und wann er nicht hilft.',
-    title: 'Internationaler Führerschein 2026: Kosten und Antrag',
+    title: 'Internationaler Führerschein 2026: Kosten, wie lange gültig',
     description: 'Internationaler Führerschein 2026: Gebühr nach GebOSt, Voraussetzungen nach § 25a FeV, Passbild und Kartenführerschein, die zwei Muster und der Antrag.',
-    h1: 'Internationaler Führerschein: Antrag, Kosten und Grenzen',
+    h1: 'Internationaler Führerschein beantragen: vor Ort oder online?',
     intro: 'Mietwagen in Übersee, Roadtrip außerhalb Europas: Viele Länder wollen neben dem deutschen Führerschein eine Übersetzung in Heftform. Die stellt die Führerscheinstelle aus, meist am selben Tag.',
     resume: (h) => `Den internationalen Führerschein stellt die Fahrerlaubnisbehörde am Wohnsitz aus. Nach § 25a der Fahrerlaubnis-Verordnung bekommt ihn auf Antrag, wer das 18. Lebensjahr vollendet hat und eine EU-Fahrerlaubnis nach einem ab dem 1. Januar 1999 verwendeten Muster vorlegt, also einen Kartenführerschein, oder eine in Deutschland gültige ausländische Fahrerlaubnis. Dem Antrag liegen ein biometrisches Passbild und der Führerschein bei. Wer noch einen Papierführerschein hat, muss ihn zuerst umtauschen. Die Gebühr liegt nach der Gebührenordnung, ${h.P.gebost_stand.de}, zwischen ${h.eur(I(h)[0])} und ${h.eur(I(h)[1])}; Berlin nennt ${h.eur(ber(h).betrag)}. Es gibt zwei Muster, nach dem Genfer Abkommen von 1949 und dem Wiener Übereinkommen von 1968; welches ein Land verlangt, richtet sich nach dem Abkommen, dem es beigetreten ist. Der internationale Führerschein gilt nur zusammen mit dem nationalen und ist zeitlich begrenzt; das Ablaufdatum steht im Dokument. In der EU braucht man ihn nicht.`,
     faqs: (h) => [
@@ -47,6 +47,7 @@ export default defineGuide({
       { q: 'Kann ich den internationalen Führerschein online beantragen?', a: 'Das hängt von der Behörde ab. Viele Führerscheinstellen stellen ihn bei persönlicher Vorsprache sofort aus, weil nur ein Heft ausgefüllt und gestempelt wird. Einige bieten einen Antrag per Post oder online an und schicken das Dokument zu. Da Passbild und Führerschein geprüft werden, ist der persönliche Weg meist der schnellste, wenn ein Termin frei ist.' },
       { q: 'Reicht der internationale Führerschein allein zum Fahren?', a: 'Nein. Er ist eine Übersetzung und gilt nur zusammen mit dem nationalen Führerschein, den Sie immer mitführen müssen. Wird der nationale Führerschein ungültig, etwa weil die Umtauschfrist abgelaufen ist, verliert auch der internationale seinen Wert. Das ist ein häufiger Fehler bei Reisenden mit alten Karten, die kurz vor dem Stichtag stehen.' },
       { q: 'Brauche ich als Deutscher in Deutschland einen internationalen Führerschein?', a: 'Nein, im Inland gilt der deutsche Führerschein, und innerhalb der EU und des EWR wird er überall anerkannt. Umgekehrt dürfen Menschen, die mit einem ausländischen Führerschein nach Deutschland ziehen, eine Zeit lang damit fahren und brauchen danach je nach Herkunftsland eine deutsche Fahrerlaubnis; das regeln die Paragrafen 28 und 29 der Fahrerlaubnis-Verordnung.' },
+      { q: 'Wie lange ist der internationale Führerschein gültig?', a: 'Das regelt § 25b Absatz 4 der Fahrerlaubnis-Verordnung: Das Muster nach Anlage 8c gilt ein Jahr, das Muster nach Anlage 8d drei Jahre, jeweils ab dem Tag der Ausstellung. Länger als der nationale Führerschein darf er nie gelten, und dessen Nummer steht im Heft. Läuft Ihr Kartenführerschein vorher ab oder verpassen Sie den Umtausch, endet auch der internationale Führerschein früher.' },
     ],
     body: (h) => `<h2>Wer ihn bekommt</h2>
 <p>Die Voraussetzungen sind kurz: Volljährigkeit, ein passender Führerschein und ein Passbild. Ob Sie direkt beantragen können, hängt vor allem davon ab, welchen Führerschein Sie haben. Die Tabelle zeigt die häufigsten Fälle.</p>
@@ -86,6 +87,7 @@ ${h.table(['Posten', 'Betrag'], [
       { q: 'Can I apply for an international driving permit online in Germany?', a: 'It depends on the office. Many licence offices issue it on the spot when you appear in person, because only a booklet is filled in and stamped. Some offer applications by post or online and send the document to you. Since the photo and licence are checked, going in person is usually fastest if an appointment is free.' },
       { q: 'Is the international driving permit enough on its own?', a: 'No. It is a translation and is valid only together with your national licence, which you must always carry. If the national licence becomes invalid, for instance because its exchange deadline has passed, the international permit loses its value too. This is a common mistake among travellers with old cards close to their deadline.' },
       { q: 'Do I need an international permit to drive in Germany?', a: 'If you hold a German or other EU licence, no: it is recognised throughout the EU and EEA. If you move to Germany with a licence from outside the EU, you may drive on it for a period and then, depending on the country of issue, need a German licence; sections 28 and 29 of the driving licence ordinance set the rules. An international permit can help as a translation during that time.' },
+      { q: 'How long is a German international driving permit valid?', a: 'Section 25b(4) of the licensing ordinance (FeV) sets it: the Annex 8c model is valid for one year and the Annex 8d model for three years, each from the date of issue. It can never outlast the national licence, whose number is entered in the booklet. If your card licence expires first or you miss the exchange deadline, the international permit ends early too.' },
     ],
     body: (h) => `<h2>Who can get one</h2>
 <p>The conditions are short: being of age, a suitable licence and a passport photo. Whether you can apply straight away depends mainly on the licence you hold. The table shows the most common cases.</p>

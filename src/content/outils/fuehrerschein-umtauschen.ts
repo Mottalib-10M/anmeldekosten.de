@@ -36,7 +36,7 @@ export default defineGuide({
     card: 'Ihre Frist nach Anlage 8e, für Papier und Karte, mit Gebühr.',
     title: 'Führerschein umtauschen 2026: Ihre Frist und die Kosten',
     description: 'Führerschein umtauschen: Frist nach Geburtsjahr oder Ausstellungsjahr laut Anlage 8e FeV, Gebühr 26,50 €, Verwarnungsgeld, Unterlagen und zuständige Stelle.',
-    h1: 'Führerschein umtauschen: Ihre Frist ausrechnen',
+    h1: 'Führerschein umtauschen: Frist ausrechnen, Stelle in Ihrer Nähe',
     intro: 'Art des Führerscheins und Jahr eingeben: Der Rechner nennt den Stichtag aus der Fahrerlaubnis-Verordnung und sagt, ob er schon verstrichen ist.',
     resume: (h) => { const k = naechste(h); return `Alle Führerscheine, die vor dem 19. Januar 2013 ausgestellt wurden, müssen gegen einen befristeten EU-Kartenführerschein umgetauscht werden. Den Stichtag legt Anlage 8e der Fahrerlaubnis-Verordnung fest: Bei Papierführerscheinen zählt das Geburtsjahr des Inhabers, bei Kartenführerscheinen das Ausstellungsjahr, das im Feld 4a steht. Wer vor 1953 geboren ist, hat in jedem Fall bis zum ${h.date(F(h).frist_vor_1953)} Zeit. Alle Papierführerscheine jüngerer Inhaber sind seit dem ${h.date('2025-01-19')} fällig. Als Nächstes sind die Karten aus ${k.von === k.bis ? k.von : `${k.von} bis ${k.bis}`} an der Reihe, mit Frist bis zum ${h.date(k.frist)}. Der Umtausch kostet ${h.eur(h.M.UMTAUSCH_GEBUEHR)}: ${h.eur(F(h).umstellung)} Gebühr der Fahrerlaubnisbehörde und ${h.eur(F(h).zfer)} für das Zentrale Fahrerlaubnisregister. Wer nach Ablauf mit dem alten Dokument fährt, verliert die Fahrerlaubnis nicht, riskiert aber ein Verwarnungsgeld von ${h.eur(F(h).verwarnungsgeld, 0)}. Eine Prüfung gibt es beim Umtausch nicht.`; },
     faqs: (h) => [

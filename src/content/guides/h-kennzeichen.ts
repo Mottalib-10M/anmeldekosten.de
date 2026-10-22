@@ -26,9 +26,9 @@ export default defineGuide({
     slug: 'h-kennzeichen',
     nav: 'H-Kennzeichen',
     card: 'Oldtimer: Alter, Gutachten, Gebühr, pauschale Steuer, Saison und Umweltzone.',
-    title: 'H-Kennzeichen 2026: Voraussetzungen, Kosten und Kfz-Steuer',
+    title: 'H-Kennzeichen 2026: ab wann, Vorteile, Steuer, Versicherung',
     description: 'H-Kennzeichen 2026: ab wann ein Oldtimer es bekommt, Gutachten nach § 23 StVZO, Gebühr der Zulassung, pauschale Kfz-Steuer, Umweltzone und Saisonkennzeichen.',
-    h1: 'H-Kennzeichen: was ein Oldtimer dafür braucht',
+    h1: 'H-Kennzeichen für Oldtimer und Motorrad: was es dafür braucht',
     intro: 'Alt genug, im Originalzustand, gepflegt: Dann kann ein Auto ein H-Kennzeichen tragen und zahlt eine feste Steuer. Was die Prüfung verlangt, was die Zulassung kostet und wann es sich rechnet.',
     resume: (h) => `Das H-Kennzeichen ist das Oldtimerkennzeichen nach § 10 Absatz 1 der Fahrzeug-Zulassungsverordnung: ein normales Kennzeichen mit dem Buchstaben H hinter der Erkennungsnummer. Es setzt ein Fahrzeug voraus, das nach § 2 Nummer 22 vor mindestens ${h.num(J(h))} Jahren erstmals in Verkehr gekommen ist, weitgehend dem Originalzustand entspricht, gut erhalten ist und der Pflege des kraftfahrzeugtechnischen Kulturguts dient. Das prüft ein Sachverständiger in einem Gutachten nach § 23 der Straßenverkehrs-Zulassungs-Ordnung; dessen Preis legt die Prüforganisation fest. Mit dem Gutachten teilt die Zulassungsbehörde das Kennzeichen zu, zur Gebühr nach der Gebührenordnung, ${h.P.gebost_stand.de}; Berlin nennt als günstigsten Fall ${h.eur(ber(h).betrag)}. Der Vorteil ist die Kfz-Steuer: nach § 9 des Kraftfahrzeugsteuergesetzes pauschal ${h.eur(h.P.kfzsteuer.oldtimer)} im Jahr für Pkw und ${h.eur(h.P.kfzsteuer.oldtimer_krad)} für Motorräder, unabhängig von Hubraum und Abgas. Dazu dürfen Fahrzeuge mit H-Kennzeichen in Umweltzonen fahren.`,
     faqs: (h) => [
