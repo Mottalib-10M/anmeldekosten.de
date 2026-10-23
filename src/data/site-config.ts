@@ -35,7 +35,7 @@ export const CONSENT_MODE: 'opt-in' | 'notice' | 'none' = 'none';
  *  pages légales régénérées : `python3 scripts/gen-legal-pages.py .`. Vide = pas de GA4. */
 export const GA4_ID = '';
 /** Projet Microsoft Clarity (compte amradif), chargé sans cookie. Vide = aucune mesure. */
-export const CLARITY_ID = '';
+export const CLARITY_ID = 'z25xhxdzst';
 export const INDEXNOW_KEY = '759c05e24b6b5931cb38a2ee3746e8eb';
 
 /* ------------------------------------------------------------------------- *
