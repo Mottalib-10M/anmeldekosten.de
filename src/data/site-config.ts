@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://de-zulassungsstelle.example";
-export const SITE_NAMES: Record<string, string> = {"de": "Zulassungsrechner", "en": "Zulassungsrechner"};
+export const SITE_URL = "https://anmeldekosten.de";
+export const SITE_NAMES: Record<string, string> = {"de": "Anmeldekosten", "en": "Anmeldekosten"};
 export const LANG_TAGS: Record<string, string> = {"de": "de-DE", "en": "en-DE"};
 export const OG_LOCALES: Record<string, string> = {"de": "de_DE", "en": "en_GB"};
 /** Une locale par langue (RECETTE §4) : l'anglais écrit « €1,234 », l'allemand « 1.234 € ». */
@@ -20,7 +20,7 @@ export const AUTHOR_DESC: Record<string, string> = {"de": "Radif Partners zerleg
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"de": ["Gebührenordnung für Maßnahmen im Straßenverkehr (GebOSt), Abschnitt Zulassung", "Fahrzeug-Zulassungsverordnung: Kennzeichenarten und Unterscheidungszeichen", "Internetbasierte Fahrzeugzulassung (i-Kfz)", "Pflichtumtausch des Führerscheins nach Anlage 8e FeV"], "en": ["German road traffic fee schedule (GebOSt), registration section", "Vehicle Registration Ordinance: plate types and district codes", "Online vehicle registration in Germany (i-Kfz)", "Mandatory driving licence exchange under Annex 8e FeV"]};
-export const CONTACT_EMAIL = "kontakt@de-zulassungsstelle.example";
+export const CONTACT_EMAIL = "kontakt@anmeldekosten.de";
 export const THEME_COLOR = '#1D4ED8';
 export const LOGO_SYMBOL = 'Kfz';
 export const BING_VERIFY_CODE = '';

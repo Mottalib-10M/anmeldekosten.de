@@ -1,6 +1,6 @@
 {
- "name": "Zulassungsrechner",
- "short_name": "Zulassungsrechner",
+ "name": "Anmeldekosten",
+ "short_name": "Anmeldekosten",
  "description": "Zulassungsgebühren 2026 nach Gebührenordnung zerlegt, Zulassungsstelle jedes Kreises mit Kennzeichen und Anschrift, Frist für den Führerscheinumtausch nach Anlage 8e FeV.",
  "start_url": "/de/",
  "display": "standalone",

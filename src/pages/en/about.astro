@@ -9,8 +9,8 @@ import { P } from '../../lib/engine/params';
 const lang = 'en';
 const n = (x: number) => formatNumber(x, 0, lang);
 ---
-<PageLayout title="Zulassungsrechner: who publishes this site and why it exists" description="Who publishes this German registration fee calculator, why it splits each fee into GebOSt lines, where addresses and deadlines come from, what it never does." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
-  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">About the Zulassungsrechner</h1></header>
+<PageLayout title="Anmeldekosten: who publishes this site and why it exists" description="Who publishes this German registration fee calculator, why it splits each fee into GebOSt lines, where addresses and deadlines come from, what it never does." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">About the Anmeldekosten</h1></header>
   <div class="prose prose-slate max-w-none">
     <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
     <p>Radif Partners publishes independent calculators on administrative and money questions. This one answers three questions everyone faces after buying a car in Germany, moving house or finding an old licence in a drawer: which registration office (Zulassungsstelle) is mine, what exactly does my procedure cost, and by when must my licence be exchanged?</p>
